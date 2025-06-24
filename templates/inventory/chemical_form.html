@@ -1,0 +1,76 @@
+{% extends "inventory/base.html" %}
+{% load static %}
+
+{% block content %}
+<h2 class="mb-4">
+    {% if object %}
+        Edit Chemical (रसायन संपादित करा): {{ object.name }}
+    {% else %}
+        Add New Chemical (नवीन रसायन जोडा)
+    {% endif %}
+</h2>
+
+<form method="post" class="needs-validation" novalidate>
+    {% csrf_token %}
+    
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <label for="id_name" class="form-label">Name (नाव)</label>
+            {{ form.name }}
+        </div>
+        <div class="col-md-3">
+            <label for="id_chemical_type" class="form-label">Type (प्रकार)</label>
+            {{ form.chemical_type }}
+        </div>
+        <div class="col-md-3">
+            <label for="id_toxicity" class="form-label">Toxicity (विषारीपणा)</label>
+            {{ form.toxicity }}
+        </div>
+    </div>
+    
+    <div class="mb-3">
+        <label for="id_appearance" class="form-label">Appearance (देखावा)</label>
+        {{ form.appearance }}
+    </div>
+    
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <label for="id_trade_names" class="form-label">Trade Names (ब्रँड नावे)</label>
+            {{ form.trade_names }}
+        </div>
+        <div class="col-md-6">
+            <label for="id_suitable_crops" class="form-label">Suitable Crops (योग्य पिके)</label>
+            {{ form.suitable_crops }}
+        </div>
+    </div>
+    
+    <div class="row mb-3">
+        <div class="col-md-4">
+            <label for="id_quantity_per_hectare" class="form-label">Quantity per Hectare (प्रति हेक्टर प्रमाण)</label>
+            {{ form.quantity_per_hectare }}
+        </div>
+        <div class="col-md-4">
+            <label for="id_quantity_of_water" class="form-label">Quantity of Water (पाण्याचे प्रमाण)</label>
+            {{ form.quantity_of_water }}
+        </div>
+        <div class="col-md-4">
+            <label for="id_stock" class="form-label">Stock Quantity (स्टॉक प्रमाण)</label>
+            {{ form.stock }}
+        </div>
+    </div>
+    
+    <div class="mb-3">
+        <label for="id_usage_notes" class="form-label">Usage Notes (वापर सूचना)</label>
+        {{ form.usage_notes }}
+    </div>
+    
+    <div class="d-flex justify-content-between">
+        <a href="{% url 'inventory:chemical-list' %}" class="btn btn-secondary">
+            <i class="bi bi-arrow-left"></i> Cancel (रद्द करा)
+        </a>
+        <button type="submit" class="btn btn-success">
+            <i class="bi bi-save"></i> Save (जतन करा)
+        </button>
+    </div>
+</form>
+{% endblock %}

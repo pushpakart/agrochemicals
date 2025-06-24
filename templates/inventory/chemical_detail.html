@@ -1,0 +1,77 @@
+{% extends "inventory/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header bg-primary text-white">
+        <h3>Chemical Details (रसायन तपशील): {{ chemical.name }}</h3>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
+                <h5>Basic Information (मूलभूत माहिती)</h5>
+                <table class="table table-bordered">
+                    <tr>
+                        <th>Type (प्रकार)</th>
+                        <td>{{ chemical.get_chemical_type_display }}</td>
+                    </tr>
+                    <tr>
+                        <th>Toxicity (विषारीपणा)</th>
+                        <td>{{ chemical.get_toxicity_display }}</td>
+                    </tr>
+                    <tr>
+                        <th>Appearance (देखावा)</th>
+                        <td>{{ chemical.appearance }}</td>
+                    </tr>
+                    <tr>
+                        <th>Stock (स्टॉक)</th>
+                        <td>{{ chemical.stock }}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-md-6">
+                <h5>Usage Information (वापर माहिती)</h5>
+                <table class="table table-bordered">
+                    <tr>
+                        <th>Trade Names (ब्रँड नावे)</th>
+                        <td>{{ chemical.trade_names }}</td>
+                    </tr>
+                    <tr>
+                        <th>Suitable Crops (योग्य पिके)</th>
+                        <td>{{ chemical.suitable_crops }}</td>
+                    </tr>
+                    <tr>
+                        <th>Quantity per Hectare (प्रति हेक्टर प्रमाण)</th>
+                        <td>{{ chemical.quantity_per_hectare }}</td>
+                    </tr>
+                    <tr>
+                        <th>Quantity of Water (पाण्याचे प्रमाण)</th>
+                        <td>{{ chemical.quantity_of_water }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <div class="mt-3">
+            <h5>Usage Notes (वापर सूचना)</h5>
+            <div class="p-3 bg-light rounded">
+                {{ chemical.usage_notes }}
+            </div>
+        </div>
+        
+        <div class="mt-4 d-flex justify-content-between">
+            <a href="{% url 'inventory:chemical-list' %}" class="btn btn-secondary">
+                <i class="bi bi-arrow-left"></i> Back to List (यादीकडे परत)
+            </a>
+            <div>
+                <a href="{% url 'inventory:chemical-update' chemical.pk %}" class="btn btn-warning">
+                    <i class="bi bi-pencil"></i> Edit (संपादित करा)
+                </a>
+                <a href="{% url 'inventory:chemical-delete' chemical.pk %}" class="btn btn-danger">
+                    <i class="bi bi-trash"></i> Delete (हटवा)
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
